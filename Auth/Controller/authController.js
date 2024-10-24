@@ -2,6 +2,7 @@ const DataBase = require("../DBConfig")
 
 module.exports.postSignup = async (req, res) => {
   try {
+    console.log('post signup');
     const data = {
       name: req.body.name,
       password: req.body.password,
