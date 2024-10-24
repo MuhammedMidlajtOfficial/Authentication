@@ -1,5 +1,11 @@
 const DataBase = require("../DBConfig")
 
+module.exports.getLogin = async (req, res) => {
+  res.status(200).send('go to login')
+}
+
+module.exports.getSignup = async (req, res) => {}
+
 module.exports.postSignup = async (req, res) => {
   try {
     console.log('post signup');
