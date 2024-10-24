@@ -2,7 +2,7 @@
   "name": "auth",
   "version": "1.0.0",
   "description": "",
-  "main": "DBConfig.js",
+  "main": "app.js",
   "scripts": {
     "start": "node server.js"
   },
