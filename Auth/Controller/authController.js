@@ -1,7 +1,11 @@
 const DataBase = require("../DBConfig")
 
 module.exports.getLogin = async (req, res) => {
-  res.status(200).send('go to login')
+  if (req.session.user) {
+      return res.status(200).json({ message: 'User already logged in' });
+  } else {
+      return res.status(401).json({ message: 'User not logged in' });
+  }
 }
 
 module.exports.getSignup = async (req, res) => {}
@@ -38,9 +42,10 @@ module.exports.postLogin = async (req, res) => {
 
     if (!user) {
       return res.status(404).send({ message: 'User not found' })
+    }else{
+      req.session.user = user.name
+      return res.status(200).send({ message: 'Login successful', user })
     }
-
-    return res.status(200).send({ message: 'Login successful', user })
   } catch (error) {
     console.error(error)
     return res.status(500).send({ message: 'Server error' })

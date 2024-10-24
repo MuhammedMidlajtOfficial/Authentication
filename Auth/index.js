@@ -2,6 +2,13 @@ const express = require('express')
 const authRouter = require('./Routes/authRouter')
 const app = express()
 
+app.use(session({
+  secret: uuidv4(),
+  resave : false,
+  saveUninitialized : true
+}))
+app.use(nocache());
+
 app.use(express.json())
 app.use('/',authRouter)
 
