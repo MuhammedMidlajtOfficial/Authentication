@@ -10,7 +10,11 @@ connect.then(()=>{
   console.log('DB Connection Failed');
 })
 
-const userSchema = new mongoose.Schema({
+const individualUserSchema = new mongoose.Schema({
+  username:{
+    type : String,
+    required : true
+  },
   email:{
     type : String,
     required : true
@@ -21,5 +25,4 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-const DataBase = mongoose.model('user',userSchema)
-module.exports = DataBase
+module.exports.individualUserCollection = mongoose.model('user',individualUserSchema)
