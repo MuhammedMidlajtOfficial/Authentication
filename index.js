@@ -3,9 +3,9 @@ const app = express()
 const {v4 : uuidv4} = require('uuid');
 const session = require('express-session');
 const nocache = require('nocache');
-const authIndividualRouter = require('./Routes/Individual/authIndividualRouter')
-const authEnterpriseRouter = require('./Routes/Enterprise/authEnterpriseRouter')
-const profileRoutes = require('./Routes/Profile/profileRoutes.js')
+const authIndividualRouter = require('.src//Routes/Individual/authIndividualRouter')
+const authEnterpriseRouter = require('.src/Routes/Enterprise/authEnterpriseRouter')
+const profileRoutes = require('.src/Routes/Profile/profileRoutes.js')
 
 const mongoose = require('mongoose')
 require('dotenv').config();
