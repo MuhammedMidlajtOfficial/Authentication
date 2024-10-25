@@ -1,6 +1,6 @@
-const DataBase = require("../../DBConfig")
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { individualUserCollection } = require("../../models/individualUser");
 
 module.exports.getIndividualLogin = (req, res) => {
   try {
@@ -19,7 +19,7 @@ module.exports.getIndividualLogin = (req, res) => {
 module.exports.postIndividualLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await DataBase.individualUserCollection.findOne({ email });
+    const user = await individualUserCollection.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -49,13 +49,13 @@ module.exports.postIndividualSignup = async (req, res) => {
       return res.status(400).send({ message: 'Username, email, and password are required' });
     }
 
-    const existingUser = await DataBase.individualUserCollection.findOne({ email });
+    const existingUser = await individualUserCollection.findOne({ email });
     if (existingUser) {
       return res.status(409).send({ message: 'User already exists' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await DataBase.individualUserCollection.create({
+    const user = await individualUserCollection.create({
       username,
       email,
       password: hashedPassword,
