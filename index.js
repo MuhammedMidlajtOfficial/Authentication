@@ -7,7 +7,6 @@ const authIndividualRouter = require('./Routes/Individual/authIndividualRouter')
 const authEnterpriseRouter = require('./Routes/Enterprise/authEnterpriseRouter')
 const profileRoutes = require('./Routes/Profile/profileRoutes.js')
 
-const mongoose = require('mongoose')
 require('dotenv').config();
 
 app.use(session({
@@ -19,11 +18,6 @@ app.use(nocache());
 app.use(express.json())
 
 app.use(express.json({ limit: "10mb" }));
-
-mongoose
-  .connect(process.env.MongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("MongoDB connection failed:", error));
 
 app.use('/individual/',authIndividualRouter)
 app.use('/enterprise/',authEnterpriseRouter)
