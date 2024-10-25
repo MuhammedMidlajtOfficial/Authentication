@@ -7,30 +7,10 @@ if (!process.env.MongoDBURL) {
   process.exit(1);
 }
 
-mongoose.connect(process.env.MongoDBURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MongoDBURL)
   .then(() => {
     console.log('DB Connected');
   })
   .catch((err) => {
     console.error('DB Connection Failed:', err);
   });
-
-const individualUserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
-
-module.exports.individualUserCollection = mongoose.model('user', individualUserSchema);
